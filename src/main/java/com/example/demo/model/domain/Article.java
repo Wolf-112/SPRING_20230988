@@ -23,5 +23,10 @@ public class Article {
         this.title = title;
         this.content = content;
     }
+    
+    public void update(String title2, String content2) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
 }
 
