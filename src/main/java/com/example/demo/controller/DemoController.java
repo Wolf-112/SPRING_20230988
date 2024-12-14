@@ -38,7 +38,13 @@ public class DemoController {
     public String getAllTestDBs(Model model) {
         TestDB test = testService.findByName("류희선");
         model.addAttribute("data4", test);
+        TestDB test1 = testService.findByName("아줌마");
+        model.addAttribute("data5", test1);
+        TestDB test2 = testService.findByName("아저씨");
+        model.addAttribute("data6", test2);
         System.out.println("데이터 출력 디버그 : " + test);
+        System.out.println("데이터 출력 디버그 : " + test1);
+        System.out.println("데이터 출력 디버그 : " + test2);
         return "testdb";
     }
     
