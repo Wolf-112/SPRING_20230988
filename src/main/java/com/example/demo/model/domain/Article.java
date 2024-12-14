@@ -17,5 +17,11 @@ public class Article {
     private String title = "";
     @Column(name = "content", nullable = false)
     private String content = "";
+    @Builder // 생성자에 빌더 패턴 적용(불변성)
+    
+    public Article(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
 }
 
