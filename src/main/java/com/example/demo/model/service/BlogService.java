@@ -3,8 +3,11 @@ package com.example.demo.model.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 //import com.example.demo.model.domain.Article;
 import com.example.demo.model.domain.Board;
 //import com.example.demo.model.repository.BlogRepository;
@@ -53,6 +56,13 @@ public class BlogService {
     public void delete(Long id){
         blogRepository.deleteById(id);
     }
+
+    public Page<Board> findAll(Pageable pageable) {
+        return blogRepository.findAll(pageable);
+    }
+    public Page<Board> searchByKeyword(String keyword, Pageable pageable) {
+        return blogRepository.findByTitleContainingIgnoreCase(keyword, pageable);
+    } // LIKE 검색 제공(대소문자 무시)
 
     // public Optional<Board> findById(Long id) { // 게시판 특정 글 조회
     //     return blogRepository.findById(id);

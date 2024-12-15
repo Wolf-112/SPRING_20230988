@@ -10,19 +10,19 @@ import com.example.demo.model.domain.Board;
 public class AddBoardRequest {
     private String title;
     private String content;
-    private String User;
-    private String Newdate;
-    private String Count;
-    private String Likec;
+    private String user;
+    private String newdate;
+    private String count;
+    private String likec;
    
     public Board toEntity(){ // Article 객체 생성
         return Board.builder()
             .title(title)
             .content(content)
-            .user(User)
-            .newdate(Newdate)
-            .count(Count)
-            .likec(Likec)
+            .user(user)
+            .newdate(newdate)
+            .count(count)
+            .likec(likec)
             .build();
     }
 }
