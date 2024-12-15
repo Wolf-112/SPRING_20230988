@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.model.service.AddBoardRequest;
 import com.example.demo.model.service.BlogService;
+
+import jakarta.servlet.http.HttpSession;
+
 import com.example.demo.model.domain.Board;
 
 
@@ -43,7 +46,16 @@ public class BlogController {
     public String board_list(Model model,
     @RequestParam(defaultValue = "0") int page,
     @RequestParam(defaultValue = "3") int pageSize,
-    @RequestParam(defaultValue = "") String keyword) {
+    @RequestParam(defaultValue = "") String keyword,
+    HttpSession session) {
+        String userId = (String) session.getAttribute("userId");
+        String email = (String) session.getAttribute("email");
+        
+        if(userId == null){
+            return "redirect:/member_login";
+        }
+        System.out.println("세션 userId: " + userId);
+
         PageRequest pageable = PageRequest.of(page, 3); // 한 페이지의 게시글 수
         Page<Board> list; // Page를 반환
 
@@ -59,6 +71,7 @@ public class BlogController {
         model.addAttribute("currentPage", page); // 페이지 번호
         model.addAttribute("keyword", keyword); // 키워드
         model.addAttribute("startNum", startNum);//블로그 글번호
+        model.addAttribute("email", email); //이메일
         return "board_list"; // .HTML 연결
     }
 
